@@ -1,0 +1,144 @@
+<section class="min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50/60 font-sans">
+  <div class="max-w-md w-full space-y-6">
+
+    <!-- Card -->
+    <div class="bg-white rounded-3xl p-8 sm:p-10 border border-gray-100 shadow-xl space-y-6">
+
+      <!-- Header & Brand Logo -->
+      <div class="text-center space-y-2">
+        <a routerLink="/home" class="inline-flex items-center gap-2 group">
+          <svg class="w-9 h-9 text-emerald-600 transition-transform group-hover:scale-105" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 3H5.2L7.3 14.3C7.45 15.1 8.15 15.7 9 15.7H18.5C19.25 15.7 19.95 15.15 20.15 14.4L22 7.5H6.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="19.5" r="1.5" fill="currentColor"/>
+            <circle cx="18" cy="19.5" r="1.5" fill="currentColor"/>
+          </svg>
+          <span class="text-2xl font-extrabold tracking-tight text-gray-900">Fresh<span class="text-emerald-600">Cart</span></span>
+        </a>
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900 pt-2">Create Your Account</h1>
+        <p class="text-xs sm:text-sm text-gray-500">Join FreshCart today for exclusive perks & lightning delivery</p>
+      </div>
+
+      <!-- Error Alert -->
+      @if (errorMessage()) {
+        <div class="p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-xs flex items-center gap-2">
+          <i class="fa-solid fa-circle-exclamation shrink-0"></i>
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+
+      <!-- Form -->
+      <form [formGroup]="registerForm" (ngSubmit)="submitRegister()" class="space-y-4">
+        <!-- Full Name -->
+        <div class="space-y-1">
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-500">Full Name</label>
+          <div class="relative">
+            <input
+              type="text"
+              formControlName="name"
+              placeholder="Ali Halas"
+              class="w-full text-sm pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50/70 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" />
+            <i class="fa-regular fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+          </div>
+          @if (registerForm.get('name')?.touched && registerForm.get('name')?.invalid) {
+            <p class="text-[11px] text-red-500 font-medium">Name must be at least 3 characters.</p>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="space-y-1">
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-500">Email Address</label>
+          <div class="relative">
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="you@example.com"
+              class="w-full text-sm pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50/70 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" />
+            <i class="fa-regular fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+          </div>
+          @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+            <p class="text-[11px] text-red-500 font-medium">Please enter a valid email address.</p>
+          }
+        </div>
+
+        <!-- Phone -->
+        <div class="space-y-1">
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-500">Phone Number</label>
+          <div class="relative">
+            <input
+              type="tel"
+              formControlName="phone"
+              placeholder="01012345678"
+              class="w-full text-sm pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50/70 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" />
+            <i class="fa-solid fa-phone absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+          </div>
+          @if (registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid) {
+            <p class="text-[11px] text-red-500 font-medium">Please enter a valid phone number.</p>
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="space-y-1">
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-500">Password</label>
+          <div class="relative">
+            <input
+              [type]="showPassword() ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="••••••••"
+              class="w-full text-sm pl-10 pr-11 py-2.5 rounded-xl border border-gray-200 bg-gray-50/70 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" />
+            <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+            <button
+              (click)="togglePassword()"
+              type="button"
+              class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
+              tabindex="-1">
+              <i [class]="showPassword() ? 'fa-regular fa-eye-slash text-sm' : 'fa-regular fa-eye text-sm'"></i>
+            </button>
+          </div>
+          @if (registerForm.get('password')?.touched && registerForm.get('password')?.invalid) {
+            <p class="text-[11px] text-red-500 font-medium">Password must be at least 6 characters.</p>
+          }
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="space-y-1">
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-500">Confirm Password</label>
+          <div class="relative">
+            <input
+              [type]="showPassword() ? 'text' : 'password'"
+              formControlName="rePassword"
+              placeholder="••••••••"
+              class="w-full text-sm pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50/70 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" />
+            <i class="fa-solid fa-shield-halved absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+          </div>
+          @if (registerForm.hasError('mismatch') && registerForm.get('rePassword')?.touched) {
+            <p class="text-[11px] text-red-500 font-medium">Passwords do not match.</p>
+          }
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          [disabled]="isLoading()"
+          type="submit"
+          class="w-full py-3.5 px-4 bg-emerald-600 hover:bg-emerald-700 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-lg shadow-emerald-600/20 transition-all text-sm flex items-center justify-center gap-2 cursor-pointer mt-3">
+          @if (isLoading()) {
+            <i class="fa-solid fa-spinner animate-spin"></i>
+            <span>Creating Account...</span>
+          } @else {
+            <span>Create Account</span>
+            <i class="fa-solid fa-user-plus text-xs"></i>
+          }
+        </button>
+      </form>
+
+      <!-- Footer Prompt -->
+      <p class="text-center text-xs text-gray-500 pt-2">
+        Already have an account?
+        <a routerLink="/login" class="text-emerald-600 hover:text-emerald-700 font-bold hover:underline">
+          Sign In
+        </a>
+      </p>
+
+    </div>
+
+  </div>
+</section>

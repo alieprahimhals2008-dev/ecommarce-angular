@@ -1,0 +1,252 @@
+<main class="min-h-screen bg-gray-50/60 py-10 px-4 sm:px-6 lg:px-8 font-sans flex flex-col justify-between">
+
+  <!-- Spacer to vertically balance the page -->
+  <div></div>
+
+  <!-- Central Two-Column Card Container -->
+  <div class="max-w-4xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+
+    <!-- ================= LEFT PANEL: ILLUSTRATION & SECURITY INFO ================= -->
+    <div class="bg-gradient-to-br from-emerald-50/70 via-green-50/50 to-teal-50/30 rounded-3xl p-8 sm:p-10 border border-emerald-100/70 flex flex-col justify-between shadow-xs">
+      
+      <!-- Floating Badges Graphic Container -->
+      <div class="relative w-full py-8 flex flex-col items-center justify-center">
+        <!-- Soft background ambient glows -->
+        <div class="absolute -top-2 left-6 w-16 h-16 rounded-full bg-emerald-200/30 blur-md pointer-events-none"></div>
+        <div class="absolute -bottom-2 right-4 w-20 h-20 rounded-full bg-teal-200/30 blur-md pointer-events-none"></div>
+
+        <!-- 3 Floating 3D-Style Badges -->
+        <div class="relative flex items-center justify-center gap-3">
+          <!-- Left Badge (Mail) -->
+          <div class="w-12 h-12 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center text-emerald-600 -rotate-6 transform hover:rotate-0 transition-transform">
+            <i class="fa-regular fa-envelope text-lg"></i>
+          </div>
+
+          <!-- Center Main Badge (Lock) -->
+          <div class="w-24 h-24 rounded-3xl bg-white shadow-xl border border-emerald-100/60 flex items-center justify-center transform hover:scale-105 transition-transform z-10">
+            <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-3xl">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+          </div>
+
+          <!-- Right Badge (Shield) -->
+          <div class="w-12 h-12 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center text-emerald-600 rotate-6 transform hover:rotate-0 transition-transform">
+            <i class="fa-solid fa-shield-halved text-lg"></i>
+          </div>
+        </div>
+
+        <!-- 3 Indicator Dots -->
+        <div class="flex items-center justify-center gap-2 mt-6">
+          <span class="w-2 h-2 rounded-full bg-emerald-300"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 shadow-xs"></span>
+          <span class="w-2 h-2 rounded-full bg-emerald-300"></span>
+        </div>
+      </div>
+
+      <!-- Description Block -->
+      <div class="text-center space-y-2 my-4">
+        <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
+          Reset Your Password
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-500 max-w-xs mx-auto leading-relaxed">
+          Don't worry, it happens to the best of us. We'll help you get back into your account in no time.
+        </p>
+      </div>
+
+      <!-- Features Row -->
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 pt-4 border-t border-emerald-100/80 text-xs font-semibold text-gray-600">
+        <span class="inline-flex items-center gap-1.5">
+          <i class="fa-regular fa-envelope text-emerald-600"></i>
+          <span>Email Verification</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+          <span>Secure Reset</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <i class="fa-solid fa-lock text-emerald-600"></i>
+          <span>Encrypted</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- ================= RIGHT PANEL: VERIFY CODE FORM ================= -->
+    <div class="bg-white rounded-3xl p-8 sm:p-10 border border-gray-100 shadow-xl flex flex-col justify-center">
+
+      <!-- Brand Logo -->
+      <div class="text-center mb-2">
+        <a routerLink="/home" class="inline-flex items-center gap-2 group">
+          <svg class="w-7 h-7 text-emerald-600 transition-transform group-hover:scale-105"
+            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M2.5 3H5.2L7.3 14.3C7.45 15.1 8.15 15.7 9 15.7H18.5C19.25 15.7 19.95 15.15 20.15 14.4L22 7.5H6.2"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="9" cy="19.5" r="1.5" fill="currentColor" />
+            <circle cx="18" cy="19.5" r="1.5" fill="currentColor" />
+          </svg>
+          <span class="text-2xl font-bold tracking-tight text-gray-900">Fresh<span class="text-emerald-600">Cart</span></span>
+        </a>
+
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight mt-3">
+          Check Your Email
+        </h1>
+        <p class="text-xs text-gray-500 mt-1 max-w-sm mx-auto">
+          Enter the 6-digit code sent to <span class="font-medium text-gray-800">{{ email() }}</span>
+        </p>
+      </div>
+
+      <!-- 3-Step Progress Stepper (Step 1 complete, Step 2 active, Step 3 upcoming) -->
+      <div class="flex items-center justify-center gap-3 my-6">
+        <!-- Step 1: Completed Checkmark -->
+        <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs shadow-xs">
+          <i class="fa-solid fa-check"></i>
+        </div>
+
+        <!-- Connector Line 1 (Completed) -->
+        <div class="w-10 sm:w-14 h-0.5 bg-emerald-600"></div>
+
+        <!-- Step 2: Active Key -->
+        <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs shadow-xs">
+          <i class="fa-solid fa-key text-[11px]"></i>
+        </div>
+
+        <!-- Connector Line 2 (Pending) -->
+        <div class="w-10 sm:w-14 h-0.5 bg-gray-200"></div>
+
+        <!-- Step 3: Pending Lock -->
+        <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-lock text-[11px]"></i>
+        </div>
+      </div>
+
+      <!-- Alerts (Error / Success) -->
+      @if (errorMessage()) {
+        <div class="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs font-medium flex items-center gap-2">
+          <i class="fa-solid fa-circle-exclamation shrink-0"></i>
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+
+      @if (successMessage()) {
+        <div class="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-medium flex items-center gap-2">
+          <i class="fa-solid fa-circle-check shrink-0"></i>
+          <span>{{ successMessage() }}</span>
+        </div>
+      }
+
+      <!-- Form -->
+      <form [formGroup]="codeForm" (ngSubmit)="verifyCode()" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1.5">
+            Verification Code
+          </label>
+          <div class="relative flex items-center">
+            <i class="fa-solid fa-shield-halved absolute left-3.5 text-xs text-gray-400"></i>
+            <input
+              type="text"
+              maxlength="6"
+              formControlName="resetCode"
+              placeholder="• • • • • •"
+              class="w-full text-center tracking-[0.45em] font-mono pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white text-base text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" />
+          </div>
+          @if (codeForm.get('resetCode')?.touched && codeForm.get('resetCode')?.invalid) {
+            <p class="text-[11px] text-red-500 mt-1">Please enter a valid 6-digit verification code.</p>
+          }
+        </div>
+
+        <!-- Resend Code helper -->
+        <div class="text-center pt-1">
+          <p class="text-xs text-gray-500">
+            Didn't receive the code?
+            <button
+              type="button"
+              (click)="resendCode()"
+              [disabled]="isResending()"
+              class="text-emerald-600 font-bold hover:underline ml-1 cursor-pointer disabled:opacity-50">
+              @if (isResending()) {
+                Resending...
+              } @else {
+                Resend Code
+              }
+            </button>
+          </p>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          [disabled]="isLoading()"
+          class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-98 text-white font-bold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer mt-3 disabled:opacity-50">
+          @if (isLoading()) {
+            <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <span>Verifying...</span>
+          } @else {
+            <span>Verify Code</span>
+          }
+        </button>
+      </form>
+
+      <!-- Navigation & Change Email Link -->
+      <div class="text-center mt-5">
+        <a routerLink="/forgot-password" class="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-emerald-600 transition-colors">
+          <i class="fa-solid fa-arrow-left text-[10px]"></i>
+          <span>Change email address</span>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= BOTTOM PERKS FOOTER ================= -->
+  <div class="max-w-6xl w-full mx-auto mt-12 pt-6 border-t border-emerald-100/60">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+      
+      <!-- Perk 1 -->
+      <div class="flex items-center gap-3 p-3 rounded-2xl bg-emerald-50/50 border border-emerald-100/40">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-emerald-600 flex items-center justify-center text-sm shrink-0">
+          <i class="fa-solid fa-truck"></i>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-gray-900">Free Shipping</h4>
+          <p class="text-[11px] text-gray-500">On orders over 500 EGP</p>
+        </div>
+      </div>
+
+      <!-- Perk 2 -->
+      <div class="flex items-center gap-3 p-3 rounded-2xl bg-emerald-50/50 border border-emerald-100/40">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-emerald-600 flex items-center justify-center text-sm shrink-0">
+          <i class="fa-solid fa-rotate-left"></i>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-gray-900">Easy Returns</h4>
+          <p class="text-[11px] text-gray-500">14-day return policy</p>
+        </div>
+      </div>
+
+      <!-- Perk 3 -->
+      <div class="flex items-center gap-3 p-3 rounded-2xl bg-emerald-50/50 border border-emerald-100/40">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-emerald-600 flex items-center justify-center text-sm shrink-0">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-gray-900">Secure Payment</h4>
+          <p class="text-[11px] text-gray-500">100% secure checkout</p>
+        </div>
+      </div>
+
+      <!-- Perk 4 -->
+      <div class="flex items-center gap-3 p-3 rounded-2xl bg-emerald-50/50 border border-emerald-100/40">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-emerald-600 flex items-center justify-center text-sm shrink-0">
+          <i class="fa-solid fa-headset"></i>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-gray-900">24/7 Support</h4>
+          <p class="text-[11px] text-gray-500">Contact us anytime</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>

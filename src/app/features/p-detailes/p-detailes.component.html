@@ -1,0 +1,227 @@
+<main class="min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-gray-50/60 font-sans">
+  <div class="max-w-7xl mx-auto space-y-10">
+
+    <nav class="flex items-center gap-2 text-xs sm:text-sm text-gray-500">
+      <a routerLink="/home" class="hover:text-emerald-600 transition-colors">Home</a>
+      <i class="fa-solid fa-chevron-right text-[10px]"></i>
+      <a routerLink="/shops" class="hover:text-emerald-600 transition-colors">Shop</a>
+      <i class="fa-solid fa-chevron-right text-[10px]"></i>
+      @if (productDetailes().category) {
+        <a [routerLink]="['/shops']" [queryParams]="{category: productDetailes().category._id}" class="hover:text-emerald-600 transition-colors">
+          {{ productDetailes().category.name }}
+        </a>
+        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+      }
+      <span class="text-gray-900 font-medium line-clamp-1 max-w-xs">
+        {{ productDetailes().title || 'Product Details' }}
+      </span>
+    </nav>
+
+    @if (isLoading()) {
+      <div class="bg-white rounded-3xl p-8 border border-gray-100 animate-pulse grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-5 aspect-square bg-gray-100 rounded-2xl"></div>
+        <div class="lg:col-span-7 space-y-4">
+          <div class="h-6 bg-gray-100 rounded w-1/4"></div>
+          <div class="h-8 bg-gray-100 rounded w-3/4"></div>
+          <div class="h-4 bg-gray-100 rounded w-1/3"></div>
+          <div class="h-10 bg-gray-100 rounded w-1/2"></div>
+          <div class="h-24 bg-gray-100 rounded w-full"></div>
+        </div>
+      </div>
+    } @else if (productDetailes()._id) {
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-xs p-6 sm:p-8 lg:p-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+
+          <div class="lg:col-span-5 flex flex-col gap-4">
+            <div class="w-full aspect-square bg-gray-50/60 rounded-3xl border border-gray-100 p-6 flex items-center justify-center overflow-hidden group">
+              <img
+                [src]="selectedImage() || productDetailes().imageCover"
+                [alt]="productDetailes().title"
+                class="w-full h-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-108" />
+            </div>
+
+            @if (productDetailes().images?.length) {
+              <div class="flex items-center gap-3 overflow-x-auto pb-2">
+                <button
+                  type="button"
+                  (click)="changeImage(productDetailes().imageCover)"
+                  class="w-16 h-16 rounded-xl border-2 p-1 bg-white shrink-0 cursor-pointer transition-all overflow-hidden"
+                  [class.border-emerald-600]="selectedImage() === productDetailes().imageCover"
+                  [class.border-gray-200]="selectedImage() !== productDetailes().imageCover"
+                  [class.hover:border-emerald-300]="selectedImage() !== productDetailes().imageCover">
+                  <img [src]="productDetailes().imageCover" alt="Thumbnail" class="w-full h-full object-contain mix-blend-multiply" />
+                </button>
+
+                @for (img of productDetailes().images; track $index) {
+                  <button
+                    type="button"
+                    (click)="changeImage(img)"
+                    class="w-16 h-16 rounded-xl border-2 p-1 bg-white shrink-0 cursor-pointer transition-all overflow-hidden"
+                    [class.border-emerald-600]="selectedImage() === img"
+                    [class.border-gray-200]="selectedImage() !== img"
+                    [class.hover:border-emerald-300]="selectedImage() !== img">
+                    <img [src]="img" alt="Thumbnail" class="w-full h-full object-contain mix-blend-multiply" />
+                  </button>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="lg:col-span-7 flex flex-col space-y-5">
+            <div class="flex flex-wrap items-center gap-2">
+              @if (productDetailes().category?.name) {
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                  {{ productDetailes().category.name }}
+                </span>
+              }
+              @if (productDetailes().brand?.name) {
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 border border-gray-200">
+                  {{ productDetailes().brand.name }}
+                </span>
+              }
+            </div>
+
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight leading-snug">
+              {{ productDetailes().title }}
+            </h1>
+
+            <div class="flex items-center gap-3">
+              <div class="flex items-center text-amber-400 text-sm gap-0.5">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+              <span class="text-sm font-semibold text-gray-700">
+                {{ productDetailes().ratingsAverage || 4.5 }}
+              </span>
+              <span class="text-xs text-gray-400">
+                ({{ productDetailes().ratingsQuantity || 24 }} customer reviews)
+              </span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <span class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+                {{ productDetailes().price | egpCurrency }}
+              </span>
+
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                In Stock ({{ productDetailes().quantity || 150 }} available)
+              </span>
+            </div>
+
+            <div class="border-t border-b border-gray-100 py-4">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">Description</h3>
+              <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+                {{ productDetailes().description }}
+              </p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Quantity</label>
+              <div class="flex items-center gap-4">
+                <div class="inline-flex items-center border border-gray-200 rounded-2xl bg-gray-50 p-1 shadow-inner">
+                  <button
+                    (click)="decrementQty()"
+                    type="button"
+                    aria-label="Decrease quantity"
+                    class="w-9 h-9 rounded-xl bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 hover:text-emerald-600 shadow-xs cursor-pointer active:scale-90 transition-all">
+                    <i class="fa-solid fa-minus text-xs"></i>
+                  </button>
+                  <span class="w-12 text-center text-base font-bold text-gray-900 select-none">
+                    {{ quantity() }}
+                  </span>
+                  <button
+                    (click)="incrementQty()"
+                    type="button"
+                    aria-label="Increase quantity"
+                    class="w-9 h-9 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center shadow-xs cursor-pointer active:scale-90 transition-all">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                  </button>
+                </div>
+
+                <div class="text-right ml-auto">
+                  <p class="text-xs text-gray-400">Total Price:</p>
+                  <p class="text-xl font-extrabold text-emerald-600">
+                    {{ productDetailes().price * quantity() | egpCurrency }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <button
+                (click)="addToCart()"
+                type="button"
+                class="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2.5 shadow-md shadow-emerald-600/20 transition-all cursor-pointer">
+                <i class="fa-solid fa-cart-shopping text-sm"></i>
+                <span>Add to Cart</span>
+              </button>
+
+              <button
+                (click)="buyNow()"
+                type="button"
+                class="w-full bg-teal-600 hover:bg-teal-700 active:scale-95 text-white font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2.5 shadow-md transition-all cursor-pointer">
+                <i class="fa-solid fa-bolt text-sm"></i>
+                <span>Buy Now</span>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-3 pt-1">
+              <button
+                (click)="toggleWishlist()"
+                type="button"
+                class="flex-1 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm transition-all shadow-xs cursor-pointer"
+                [class.text-rose-500]="isWishlisted()"
+                [class.text-gray-700]="!isWishlisted()">
+                <i [class]="isWishlisted() ? 'fa-solid fa-heart text-rose-500' : 'fa-regular fa-heart'"></i>
+                <span>{{ isWishlisted() ? 'In Wishlist' : 'Add to Wishlist' }}</span>
+              </button>
+
+              <button
+                (click)="shareProduct()"
+                type="button"
+                aria-label="Share product"
+                class="w-11 h-11 border border-gray-200 hover:bg-gray-50 text-gray-600 rounded-xl flex items-center justify-center transition-all shadow-xs cursor-pointer shrink-0">
+                <i class="fa-solid fa-share-nodes text-sm"></i>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      @if (relatedProducts().length > 0) {
+        <section class="space-y-6 pt-6">
+          <div class="flex items-center gap-3">
+            <span class="w-1.5 h-6 bg-emerald-600 rounded-full inline-block"></span>
+            <h2 class="text-2xl font-bold text-gray-900">Related Products</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+            @for (rel of relatedProducts(); track rel._id) {
+              <article [routerLink]="['/p-detailes', rel._id]"
+                class="group bg-white border border-gray-100 rounded-2xl p-4 shadow-xs hover:shadow-xl hover:border-emerald-200 transition-all duration-300 flex flex-col justify-between cursor-pointer">
+                <div class="w-full aspect-square flex items-center justify-center overflow-hidden mb-3 pt-2">
+                  <img [src]="rel.imageCover" [alt]="rel.title" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105" />
+                </div>
+                <div>
+                  <span class="text-[10px] font-semibold uppercase text-emerald-600">{{ rel.category.name }}</span>
+                  <h3 class="text-sm font-semibold text-gray-800 line-clamp-1 mt-0.5">{{ rel.title | textCut:2 }}</h3>
+                  <div class="flex items-center justify-between pt-2 border-t border-gray-100 mt-2">
+                    <span class="text-sm font-bold text-gray-900">{{ rel.price | egpCurrency }}</span>
+                    <span class="text-xs text-emerald-600 font-semibold group-hover:underline">View →</span>
+                  </div>
+                </div>
+              </article>
+            }
+          </div>
+        </section>
+      }
+    }
+
+  </div>
+</main>

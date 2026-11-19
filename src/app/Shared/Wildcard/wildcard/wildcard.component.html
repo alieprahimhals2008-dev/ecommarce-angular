@@ -1,0 +1,44 @@
+<section class="min-h-[75vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 bg-gray-50/50 font-sans">
+  <div class="max-w-xl w-full text-center space-y-8">
+    <!-- Illustration / Badge -->
+    <div class="relative mx-auto w-40 h-40 flex items-center justify-center">
+      <div class="absolute inset-0 bg-emerald-100 rounded-full animate-ping opacity-25"></div>
+      <div class="w-36 h-36 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center shadow-inner">
+        <i class="fa-solid fa-basket-shopping text-6xl text-emerald-600"></i>
+      </div>
+    </div>
+
+    <!-- Error Codes & Copy -->
+    <div class="space-y-3">
+      <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold tracking-wider uppercase">
+        Error 404
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight">
+        Oops! Page Not Found
+      </h1>
+      <p class="text-base text-gray-600 max-w-md mx-auto leading-relaxed">
+        The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+      </p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+      <a routerLink="/home"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-semibold rounded-xl shadow-md shadow-emerald-600/20 transition-all cursor-pointer">
+        <i class="fa-solid fa-house text-sm"></i>
+        <span>Back to Home</span>
+      </a>
+
+      <a routerLink="/shops"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-gray-50 text-gray-700 font-semibold rounded-xl border border-gray-200 shadow-xs transition-all cursor-pointer">
+        <i class="fa-solid fa-bag-shopping text-sm text-emerald-600"></i>
+        <span>Explore Shop</span>
+      </a>
+    </div>
+
+    <!-- Search Suggestion -->
+    <div class="pt-6 border-t border-gray-200/80 text-xs text-gray-400">
+      Need assistance? Contact our <a href="mailto:support@freshcart.com" class="text-emerald-600 hover:underline">Support Team</a> anytime.
+    </div>
+  </div>
+</section>

@@ -1,0 +1,110 @@
+<!-- Hero Carousel Slider -->
+<app-homeswiper />
+
+<!-- Features Badges Bar -->
+<section class="py-6 w-full">
+  <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Feature 1 -->
+      <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-gray-100 shadow-xs hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-truck text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 text-sm">Free Shipping</h3>
+          <p class="text-xs text-gray-500">On orders over 500 EGP</p>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-gray-100 shadow-xs hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-shield-halved text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 text-sm">Secure Payment</h3>
+          <p class="text-xs text-gray-500">100% secure transactions</p>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-gray-100 shadow-xs hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-arrow-rotate-left text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 text-sm">Easy Returns</h3>
+          <p class="text-xs text-gray-500">14-day hassle-free policy</p>
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-gray-100 shadow-xs hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-headset text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 text-sm">24/7 Support</h3>
+          <p class="text-xs text-gray-500">Dedicated assistance anytime</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Shop By Category Section -->
+<app-homecategory />
+
+<!-- Promotional Banners Section -->
+<section class="py-6 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 w-full">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Banner 1 -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 to-teal-700 p-8 text-white shadow-md">
+      <div class="absolute top-0 right-0 w-44 h-44 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-36 h-36 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+      <div class="relative z-10 space-y-3">
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold">
+          <span>🔥</span>
+          <span>Deal of the Day</span>
+        </div>
+        <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Fresh Organic Fruits</h3>
+        <p class="text-emerald-100 text-sm max-w-xs">Get up to 40% off on selected organic fruits & fresh produce.</p>
+        <div class="flex items-center gap-4 py-2">
+          <span class="text-3xl font-extrabold text-amber-300">40% OFF</span>
+          <span class="text-xs text-white/80 bg-white/15 px-2.5 py-1 rounded-md">Use code: <strong class="text-white">ORGANIC40</strong></span>
+        </div>
+        <a routerLink="/shops"
+          class="inline-flex items-center gap-2 bg-white text-emerald-700 px-6 py-3 rounded-full font-bold text-sm shadow-md hover:bg-emerald-50 active:scale-95 transition-all cursor-pointer">
+          <span>Shop Now</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Banner 2 -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-500 to-orange-600 p-8 text-white shadow-md">
+      <div class="absolute top-0 right-0 w-44 h-44 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-36 h-36 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+      <div class="relative z-10 space-y-3">
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold">
+          <span>✨</span>
+          <span>New Arrivals</span>
+        </div>
+        <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Farm-Fresh Vegetables</h3>
+        <p class="text-amber-100 text-sm max-w-xs">Discover our latest harvest sourced straight from local organic farms.</p>
+        <div class="flex items-center gap-4 py-2">
+          <span class="text-3xl font-extrabold text-white">Daily Fresh</span>
+          <span class="text-xs text-white/80 bg-white/15 px-2.5 py-1 rounded-md">Pesticide Free</span>
+        </div>
+        <a routerLink="/shops"
+          class="inline-flex items-center gap-2 bg-white text-orange-600 px-6 py-3 rounded-full font-bold text-sm shadow-md hover:bg-orange-50 active:scale-95 transition-all cursor-pointer">
+          <span>Explore Fresh</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products Grid -->
+<app-home-products />

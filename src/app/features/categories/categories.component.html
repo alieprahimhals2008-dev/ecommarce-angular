@@ -1,0 +1,65 @@
+<main class="min-h-screen bg-gray-50/60 py-8 px-4 sm:px-6 lg:px-8 font-sans">
+  <div class="max-w-7xl mx-auto space-y-8">
+
+    <!-- Breadcrumb & Page Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <nav class="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-2">
+          <a routerLink="/home" class="hover:text-emerald-600 transition-colors">Home</a>
+          <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          <span class="text-gray-900 font-medium">Categories</span>
+        </nav>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+          Browse All <span class="text-emerald-600">Categories</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-500 mt-1">Explore our complete catalog organized by departments</p>
+      </div>
+
+  
+    </div>
+
+    <!-- Categories Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+      @for (cat of categories().data; track cat._id) {
+        <div class="group bg-white rounded-3xl p-5 border border-gray-100 shadow-xs hover:shadow-xl hover:border-emerald-200 transition-all duration-300 flex flex-col items-center justify-between text-center relative overflow-hidden">
+
+          <!-- Background Accent on Hover -->
+          <div class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+
+          <!-- Category Image Container -->
+          <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden bg-gray-50 p-3 mb-4 flex items-center justify-center border border-gray-100 transition-transform duration-300 group-hover:scale-105">
+            <img
+              [src]="cat.image"
+              [alt]="cat.name"
+              class="w-full h-full object-contain mix-blend-multiply" />
+          </div>
+
+          <!-- Category Details -->
+          <div class="space-y-1.5 w-full">
+            <h2 class="text-base font-bold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
+              {{ cat.name }}
+            </h2>
+
+            <div class="pt-3 flex flex-col gap-2">
+              <a [routerLink]="['/subcategory',cat._id]"
+                class="text-[11px] font-medium text-gray-400 hover:text-gray-700 transition-colors">
+                View Subcategories
+              </a>
+            </div>
+          </div>
+
+        </div>
+      }
+    </div>
+
+    <!-- Empty State -->
+    @if (categories().results===0) {
+      <div class="bg-white rounded-3xl p-12 text-center border border-gray-100 space-y-3">
+        <i class="fa-solid fa-tags text-4xl text-gray-300"></i>
+        <h3 class="text-lg font-bold text-gray-800">No categories found</h3>
+        <p class="text-xs text-gray-500">Try searching with a different keyword</p>
+      </div>
+    }
+
+  </div>
+</main>
